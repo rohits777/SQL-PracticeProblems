@@ -1,0 +1,64 @@
+UC1: Ability to create a payroll
+
+1) show databases;
+
+2) create database payroll_service;
+
+3) use payroll_service;
+
+select * from table_name;
+ 
+ ===================================================================================
+ UC2: Ability to create a employee payroll table in the payroll service database to manage employee payrolls
+
+4) create table employee_payroll(
+	id int AUTO_INCREMENT,
+	name varchar(10),
+	salary double, 
+	start_date date,
+	PRIMARY KEY(id) );
+	
+5) show tables;
+
+================================================================================================================
+UC3: Ability to retrieve all the employee payroll data that is added to payroll service database
+
+6)  Insert Query : 
+insert into employee_payroll values(1,"Ankit",150000.0,'2020-08-20');
+insert into employee_payroll values(2,"Ganesh",255000.0,"2021-03-31");
+insert into employee_payroll values(3, "Amit",100000.0,"2019-01-15");
+insert into employee_payroll values(4, "Saurav",250000.0,"2019-01-15");
+
+=================================================================================================================
+UC4: Ability to retrieve all the employee payroll data that is added to payroll service database
+
+select * from employee_payroll;
+
+=======================================================================================================================
+UC 5: Ability to retrieve salary data for a particular
+employee as well as all employees who have joined in a particular data range from the payroll service database
+
+8) Where CLAUSE :
+select * from employee_payroll where name = 'Ankit';
+select * from employee_payroll where salary >= 100000;
+select * from employee_payroll where start_date between CAST('2020-01-01' AS DATE) AND CAST('2020-12-31' AS DATE);
+select * from employee_payroll where salary between 50000 AND 150000;
+
+==================================================================================================================================
+UC 6: Ability to add Gender to Employee Payroll Table and Update the Rows to reflect the correct Employee Gender
+
+alter table employee_payroll add column gender varchar(1);
+
+update employee_payroll set gender='M' where name = "Ankit" or name="Amit";
+update employee_payroll set gender='M' where gender IS NULL;
+
+=============================================================================================================================================
+UC 7: Ability to find sum, average, min, max and number of male and female employees
+
+ SUM, AVG, MIN, MAX
+select sum(name) from employee_payroll;
+select avg(salary) from employee_payroll;
+select min(salary) from employee_payroll;
+select max(salary) from employee_payroll;
+select count(*) from employee_payroll;
+select gender, sum(salary) from employee_payroll group by gender;

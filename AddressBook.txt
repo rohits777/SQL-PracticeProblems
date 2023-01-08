@@ -1,0 +1,74 @@
+ UC 1: Ability to create a Address Book Service DB
+ UC 2: Ability to create a Address Book Table with first and last names, address, city, state, zip, phone number and email as its attributes
+ UC 3: Ability to insert new Contacts to Address Book
+ 
+ show databases;
+ create database Address_Book;
+ use Address_Book;
+create table Address_book(sr_no int AUTO_INCREMENT,first_name varchar(10),last_name varchar(10),address varchar(10),city varchar(10),state varchar(10),zip int,phone_number long,email varchar(10),primary key(sr_no));
+ select * from Address_book;
+ desc Address_book;
+
+ insert into Address_book values(1,"Ankit","Kumar","Faridabad","Haryana","HR",121002,8920505590,"An@gm.com");
+ insert into Address_book values(2,"Saurav","Kumar","Gurugram","Haryana","HR",121003,8920505591,"An1@gm.com");
+ insert into Address_book values(3,"Shubham","Sharma","Bengaluru","Maharastra","MH",131002,8920505592,"An2@gm.com");
+ insert into Address_book values(4,"Ankush","Kumar","Faridabad","Haryana","HR",121002,8920505593,"An3@gm3.com");
+ insert into Address_book values(5,"Surbhi","Sajjan","Bengaluru","Maharastra","MH",131002,892050554,"An4@gm.com");
+
+========================================================================================================================
+
+UC4: Ability to edit existing contact person using their name
+
+update Address_Book set First_name="Manoj",Last_name="Gupta",address="An5@gm.com" where first_name="Ankit";
+
+==========================================================================================================================
+
+UC5: Ability to delete a person using person's name
+
+delete from Address_book where first_name="Ankush";
+
+=====================================================================================================================================
+
+UC6: Ability to Retrieve Person belonging to a City or State from the Address Book
+
+ select * from Address_Book where City="Faridabad";
+ 
+ ==============================================================================================================================================
+
+UC7: Ability to understand the size of address book by City and State
+
+ select count(*) from Address_Book;
+
+========================================================================================================================================
+
+UC8: Ability to retrieve entries sorted alphabetically by Person’s name for a given city
+
+select first_name,last_name from Address_Book order by city=ASC;
+select first_name,last_name from Address_Book order by first_name ASC;
+
+================================================================================================================================
+
+UC9: Ability to identify each Address Book with name and Type.
+
+alter table Address_Book add type varchar(10);
+update Address_Book set type="Family" where first_name="Manoj" or first_Name="Gupta";
+update Address_Book set Type="Friend" where first_name="Shubham" or first_Name="Sharma";
+update Address_Book set type="Coligue" where first_name="Surbhi";
+
+=======================================================================================================================================
+
+UC10: Ability to get number of contact persons
+
+select type,count(*) from Address_Book group by type;
+
+===============================================================================================================================================
+
+UC 11: Ability to add person to both Friend and Family
+
+insert into Address_book values(6,"Sumit","Kumar","113/3","Faridabad","Haryana",121002,8920505595,"An7@gm.com", "Family");
+insert into Address_book values(5,"Alok","Kumar","113/3", "Gurugram","Haryana",121003,8920505596,"An@gm.com", "Friend");
+
+update Address_Book set type="Family" where first_name="Sumit" or first_Name="null";
+update Address_Book set Type="Friend" where first_name="Alok" or first_Name="null";
+
+==========================================================================================================================
